@@ -12,6 +12,10 @@ public class Categoria {
     @Column
     private String nome;
 
+    public Categoria() {
+        
+    }
+
     public Categoria(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
