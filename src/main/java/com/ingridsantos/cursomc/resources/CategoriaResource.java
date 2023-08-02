@@ -14,12 +14,12 @@ public class CategoriaResource {
 
     private CategoriaService categoriaService;
 
-    public CategoriaResource(CategoriaService categoriaService) {
+     CategoriaResource(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> ConsultaCategoriaPorId(@PathVariable Integer id) {
+     ResponseEntity<Categoria> ConsultaCategoriaPorId(@PathVariable Integer id) {
         return ResponseEntity.status(200).body(categoriaService.ConsultaCategoriaPorId(id));
     }
 

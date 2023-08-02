@@ -11,7 +11,6 @@ public class CategoriaService {
 
     private CategoriaRepository repository;
 
-
     public CategoriaService(CategoriaRepository repository) {
         this.repository = repository;
     }
@@ -20,7 +19,5 @@ public class CategoriaService {
        Optional<Categoria> ObjCategoria = repository.findById(id);
         return ObjCategoria.orElse(null);
     }
-
-
 
 }

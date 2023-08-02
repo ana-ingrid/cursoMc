@@ -13,7 +13,7 @@ public class Categoria {
     private String nome;
 
     public Categoria() {
-        
+
     }
 
     public Categoria(Integer id, String nome) {
