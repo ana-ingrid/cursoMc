@@ -1,6 +1,8 @@
 package com.ingridsantos.cursomc.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,8 @@ public class Categoria {
     private Integer id;
     @Column
     private String nome;
+    @ManyToMany(mappedBy = "categorias")
+    private List<Produto> Produtos = new ArrayList<>();
 
     public Categoria() {
 
@@ -37,6 +41,14 @@ public class Categoria {
         this.nome = nome;
     }
 
+    public List<Produto> getProdutos() {
+        return Produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        Produtos = produtos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,7 +63,7 @@ public class Categoria {
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         return "Categorias{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
