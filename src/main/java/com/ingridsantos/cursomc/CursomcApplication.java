@@ -16,7 +16,7 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-
+	@Autowired
 	private ProdutoRepository produtoRepository;
 
 	public static void main(String[] args) {
@@ -32,10 +32,6 @@ public class CursomcApplication implements CommandLineRunner {
 		Produto p1 = new Produto( null, "impressora", 2000.00);
 		Produto p2 = new Produto( null, "cadeira", 1000.00);
 		Produto p3 = new Produto( null, "computador", 2000.00);
-
-
-		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
-		cat2.getProdutos().addAll(Arrays.asList(p2));
 
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));

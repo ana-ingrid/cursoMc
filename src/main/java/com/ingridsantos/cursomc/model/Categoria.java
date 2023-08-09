@@ -1,5 +1,8 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ public class Categoria {
     private Integer id;
     @Column
     private String nome;
+    @JsonBackReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> Produtos = new ArrayList<>();
 
