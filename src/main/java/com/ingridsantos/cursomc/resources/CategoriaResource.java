@@ -14,7 +14,7 @@ public class CategoriaResource {
 
     private CategoriaService categoriaService;
 
-     CategoriaResource(CategoriaService categoriaService) {
+     public CategoriaResource(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
 

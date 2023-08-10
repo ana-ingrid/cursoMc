@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.service;
 
+import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
 import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ public class CategoriaService {
 
     public Categoria ConsultaCategoriaPorId(Integer id) {
        Optional<Categoria> ObjCategoria = repository.findById(id);
-        return ObjCategoria.orElse(null);
+        return ObjCategoria.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
     }
+
 
 }
