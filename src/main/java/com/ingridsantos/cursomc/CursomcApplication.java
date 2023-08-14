@@ -1,8 +1,12 @@
 package com.ingridsantos.cursomc;
 
 import com.ingridsantos.cursomc.model.Categoria;
+import com.ingridsantos.cursomc.model.Cidade;
+import com.ingridsantos.cursomc.model.Estado;
 import com.ingridsantos.cursomc.model.Produto;
 import com.ingridsantos.cursomc.repository.CategoriaRepository;
+import com.ingridsantos.cursomc.repository.CidadeRepository;
+import com.ingridsantos.cursomc.repository.EstadoRepository;
 import com.ingridsantos.cursomc.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,9 +19,15 @@ import java.util.Arrays;
 public class CursomcApplication implements CommandLineRunner {
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	protected CategoriaRepository categoriaRepository;
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	protected ProdutoRepository produtoRepository;
+
+	@Autowired
+	protected CidadeRepository cidadeRepository;
+
+	@Autowired
+	protected EstadoRepository estadoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -26,6 +36,7 @@ public class CursomcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+//		produto e categoria
 		Categoria cat1 = new Categoria(null,"Informática");
 		Categoria cat2 = new Categoria(null ,"Escritório");
 
@@ -39,5 +50,21 @@ public class CursomcApplication implements CommandLineRunner {
 
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+
+//		estados e cidades
+		Estado e1 = new Estado(null, "Minas Gerais");
+		Estado e2 = new Estado(null, "São Paulo");
+
+		Cidade c1 = new Cidade(null, "Uberlândia", e1);
+		Cidade c2 = new Cidade(null, "Juiz de Fora",e1);
+		Cidade c3 = new Cidade(null, "Campinas", e2);
+
+		e1.getCidades().addAll(Arrays.asList(c1,c2));
+		e2.getCidades().addAll(Arrays.asList(c3));
+
+
+		estadoRepository.saveAll(Arrays.asList(e1,e2));
+		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+
 	}
 }
