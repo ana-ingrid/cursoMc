@@ -10,14 +10,14 @@ import java.util.Optional;
 @Service
 public class CategoriaService {
 
-    private CategoriaRepository repository;
+    private CategoriaRepository categoriaRepository;
 
     public CategoriaService(CategoriaRepository repository) {
-        this.repository = repository;
+        this.categoriaRepository = repository;
     }
 
     public Categoria ConsultaCategoriaPorId(Integer id) {
-       Optional<Categoria> ObjCategoria = repository.findById(id);
+       Optional<Categoria> ObjCategoria = categoriaRepository.findById(id);
         return ObjCategoria.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
     }
 

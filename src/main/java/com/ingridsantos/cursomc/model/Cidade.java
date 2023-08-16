@@ -1,5 +1,7 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public class Cidade {
     private String nome;
     @ManyToOne
     @JoinColumn(name = "estado_id")
+    @JsonManagedReference
     private Estado estado;
 
     public Cidade() {

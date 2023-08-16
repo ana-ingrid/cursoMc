@@ -18,7 +18,7 @@ public class CategoriaResource {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
      ResponseEntity<Categoria> ConsultaCategoriaPorId(@PathVariable Integer id) {
         return ResponseEntity.status(200).body(categoriaService.ConsultaCategoriaPorId(id));
     }

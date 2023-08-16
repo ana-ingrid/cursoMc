@@ -1,5 +1,7 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -16,11 +18,15 @@ public class Endereco {
     private String cep;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "cidade_id")
     private Cidade cidade;
 
+    public Endereco(){
+
+    }
 
     public Endereco(String logradouro, Integer numero, String complemento, String bairro,
                     String cep, Cliente cliente, Cidade cidade) {

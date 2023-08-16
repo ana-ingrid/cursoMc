@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ingridsantos.cursomc.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Cliente {
 
     private Integer tipoCliente;
     @OneToMany(mappedBy = "cliente")
+    @JsonManagedReference
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
