@@ -10,8 +10,7 @@ public class Estado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    private Integer id = null;
     private String nome;
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
@@ -20,8 +19,7 @@ public class Estado {
 
     }
 
-    public Estado(Integer id, String nome) {
-        this.id = id;
+    public Estado( String nome) {
         this.nome = nome;
     }
 

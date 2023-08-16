@@ -12,10 +12,8 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    private Integer id = null;
     private String nome;
-    @Column
     private Double preco;
     @JsonBackReference
     @ManyToMany
@@ -27,8 +25,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(Integer id, String nome, Double preco) {
-        this.id = id;
+    public Produto(String nome, Double preco) {
         this.nome = nome;
         this.preco = preco;
     }

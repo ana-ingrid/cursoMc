@@ -1,7 +1,6 @@
 package com.ingridsantos.cursomc.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,8 +12,7 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    private Integer id = null;
     private String nome;
     @JsonBackReference
     @ManyToMany(mappedBy = "categorias")
@@ -24,8 +22,7 @@ public class Categoria {
 
     }
 
-    public Categoria(Integer id, String nome) {
-        this.id = id;
+    public Categoria( String nome) {
         this.nome = nome;
     }
 

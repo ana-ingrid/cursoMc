@@ -8,8 +8,7 @@ public class Cidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column
+    private Integer id = null;
     private String nome;
     @ManyToOne
     @JoinColumn(name = "estado_id")
@@ -18,8 +17,7 @@ public class Cidade {
     public Cidade() {
     }
 
-    public Cidade(Integer id, String nome, Estado estado) {
-        this.id = id;
+    public Cidade( String nome, Estado estado) {
         this.nome = nome;
         this.estado = estado;
     }
