@@ -20,12 +20,15 @@ public class Cliente {
     private String cpfOuCnpj;
 
     private Integer tipoCliente;
+
     @OneToMany(mappedBy = "cliente")
     @JsonManagedReference
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
+
+    private List<Pedido> Pedidos = new ArrayList<>();
 
     public Cliente() {
     }
@@ -91,6 +94,18 @@ public class Cliente {
 
     public void setTelefones(Set<String> telefones) {
         this.telefones = telefones;
+    }
+
+    public void setTipoCliente(Integer tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public List<Pedido> getPedidos() {
+        return Pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        Pedidos = pedidos;
     }
 
     @Override
