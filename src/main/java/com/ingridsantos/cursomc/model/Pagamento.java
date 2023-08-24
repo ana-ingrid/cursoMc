@@ -2,13 +2,18 @@ package com.ingridsantos.cursomc.model;
 
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Pagamento {
 
+    @Id
     private Integer id;
     private EstadoPagamento estado;
-
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    @MapsId
     private Pedido pedido;
 
     public Pagamento() {

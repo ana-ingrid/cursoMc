@@ -1,13 +1,19 @@
 package com.ingridsantos.cursomc.model;
 
+import org.hibernate.engine.internal.Cascade;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Pedido {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date instante;
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @JoinColumn
     private Pagamento pagamento;
 
     private Cliente cliente;
