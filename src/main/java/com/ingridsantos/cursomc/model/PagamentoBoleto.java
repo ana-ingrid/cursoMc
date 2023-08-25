@@ -2,9 +2,11 @@ package com.ingridsantos.cursomc.model;
 
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class PagamentoBoleto extends Pagamento {
 
     private Date dataVencimento;
@@ -14,8 +16,8 @@ public class PagamentoBoleto extends Pagamento {
 
     }
 
-    public PagamentoBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
-        super(id, estado, pedido);
+    public PagamentoBoleto(EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+        super(estado, pedido);
         this.dataVencimento = dataVencimento;
         this.dataPagamento = dataPagamento;
     }

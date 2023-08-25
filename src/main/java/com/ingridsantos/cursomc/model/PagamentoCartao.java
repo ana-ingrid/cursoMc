@@ -2,9 +2,10 @@ package com.ingridsantos.cursomc.model;
 
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.Objects;
-
+@Entity
 public class PagamentoCartao extends Pagamento {
 
     private Integer numeroParcelas;
@@ -13,8 +14,8 @@ public class PagamentoCartao extends Pagamento {
 
     }
 
-    public PagamentoCartao(Integer id, EstadoPagamento estado, Pedido pedido, Integer numeroParcelas) {
-        super(id, estado, pedido);
+    public PagamentoCartao(EstadoPagamento estado, Pedido pedido, Integer numeroParcelas) {
+        super(estado, pedido);
         this.numeroParcelas = numeroParcelas;
     }
 

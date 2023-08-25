@@ -27,7 +27,7 @@ public class Cliente {
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
-
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> Pedidos = new ArrayList<>();
 
     public Cliente() {

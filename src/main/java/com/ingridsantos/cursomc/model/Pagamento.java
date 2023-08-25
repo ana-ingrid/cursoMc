@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Pagamento {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pagamento {
 
     @Id
-    private Integer id;
-    private EstadoPagamento estado;
+    private Integer id = null;
+    private Integer estado;
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
@@ -19,9 +20,8 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
-        this.id = id;
-        this.estado = estado;
+    public Pagamento(EstadoPagamento estado, Pedido pedido) {
+        this.estado = estado.getCodigo();
         this.pedido = pedido;
     }
 
@@ -34,11 +34,11 @@ public class Pagamento {
     }
 
     public EstadoPagamento getEstado() {
-        return estado;
+        return EstadoPagamento.toEnum(estado);
     }
 
     public void setEstado(EstadoPagamento estado) {
-        this.estado = estado;
+        this.estado = estado.getCodigo();
     }
 
     public Pedido getPedido() {

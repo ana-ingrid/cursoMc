@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc;
 
+import com.ingridsantos.cursomc.enums.EstadoPagamento;
 import com.ingridsantos.cursomc.enums.TipoCliente;
 import com.ingridsantos.cursomc.model.*;
 import com.ingridsantos.cursomc.repository.*;
@@ -8,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -17,15 +19,17 @@ public class CursomcApplication implements CommandLineRunner {
     protected CategoriaRepository categoriaRepository;
     @Autowired
     protected ProdutoRepository produtoRepository;
-
     @Autowired
     protected CidadeRepository cidadeRepository;
-
     @Autowired
     protected EstadoRepository estadoRepository;
-
     @Autowired
     protected ClienteRepository clienteRepository;
+    @Autowired
+    protected PagamentoRepository pagamentoRepository;
+    @Autowired
+    protected PedidoRepository pedidoRepository;
+
 
     @Autowired
     protected EnderecoRepository enderecoRepository;
@@ -79,5 +83,23 @@ public class CursomcApplication implements CommandLineRunner {
 
         clienteRepository.saveAll(Arrays.asList(cl1));
         enderecoRepository.saveAll(Arrays.asList(en1, en2));
+
+//        Pedido e pagamento
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+
+        Pedido ped1 = new Pedido(sdf.parse("30/07/2023 10:32"), cl1, en1);
+        Pedido ped2 = new Pedido(sdf.parse("10/08/2023 14:10"), cl1, en1);
+
+        Pagamento pag1 = new PagamentoCartao(EstadoPagamento.QUITADO, ped1, 6);
+        ped1.setPagamento(pag1);
+
+        Pagamento pag2 = new PagamentoBoleto(EstadoPagamento.PENDENTE, ped2, sdf.parse("24/08/2023 23:59"), null);
+        ped2.setPagamento(pag2);
+
+        cl1.getPedidos().addAll(Arrays.asList(ped1,ped2));
+
+        pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
+        pagamentoRepository.saveAll(Arrays.asList(pag1,pag2));
     }
 }
