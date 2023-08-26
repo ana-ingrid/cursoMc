@@ -1,9 +1,10 @@
 package com.ingridsantos.cursomc.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 @Embeddable
-public class ItemPedidoPk {
+public class ItemPedidoPk implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;

@@ -1,9 +1,11 @@
 package com.ingridsantos.cursomc.model;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.util.Objects;
-
+@Entity
 public class ItemPedido {
-
+    @EmbeddedId
     private ItemPedidoPk id = new ItemPedidoPk();
     private Double desconto;
     private Integer quantidade;
