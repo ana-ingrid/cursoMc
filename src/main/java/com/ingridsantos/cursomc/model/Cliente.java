@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ingridsantos.cursomc.enums.TipoCliente;
 
@@ -27,6 +28,7 @@ public class Cliente {
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> Pedidos = new ArrayList<>();
 

@@ -17,8 +17,7 @@ public class CategoriaService {
     }
 
     public Categoria ConsultaCategoriaPorId(Integer id) {
-       Optional<Categoria> ObjCategoria = categoriaRepository.findById(id);
-        return ObjCategoria.orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
+        return categoriaRepository.findById(id).orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
     }
 
 

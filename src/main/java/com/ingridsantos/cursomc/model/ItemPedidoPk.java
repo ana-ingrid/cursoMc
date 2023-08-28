@@ -34,11 +34,11 @@ public class ItemPedidoPk implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemPedidoPk that = (ItemPedidoPk) o;
-        return Objects.equals(pedido, that.pedido) && Objects.equals(produto, that.produto);
+        return Objects.equals(pedido, that.pedido);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pedido, produto);
+        return Objects.hash(pedido);
     }
 }

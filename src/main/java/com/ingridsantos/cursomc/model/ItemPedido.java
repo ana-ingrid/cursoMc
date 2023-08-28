@@ -1,10 +1,13 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
 @Entity
 public class ItemPedido {
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPk id = new ItemPedidoPk();
     private Double desconto;
@@ -22,11 +25,11 @@ public class ItemPedido {
         this.preco = preco;
     }
 
-
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
-
+    @JsonIgnore
     public Produto getProduto(){
         return id.getProduto();
     }
