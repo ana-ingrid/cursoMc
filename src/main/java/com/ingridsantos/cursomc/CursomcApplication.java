@@ -88,7 +88,7 @@ public class CursomcApplication implements CommandLineRunner {
 
 //        Pedido e pagamento
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         Pedido ped1 = new Pedido(sdf.parse("30/07/2023 10:32"), cl1, en1);
         Pedido ped2 = new Pedido(sdf.parse("10/08/2023 14:10"), cl1, en1);

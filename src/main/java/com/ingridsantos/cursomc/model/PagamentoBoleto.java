@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -8,8 +9,9 @@ import java.util.Objects;
 
 @Entity
 public class PagamentoBoleto extends Pagamento {
-
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVencimento;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date dataPagamento;
 
     public PagamentoBoleto(){

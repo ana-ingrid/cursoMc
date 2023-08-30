@@ -1,7 +1,7 @@
 package com.ingridsantos.cursomc.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +14,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id = null;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
@@ -35,7 +36,6 @@ public class Pedido {
 
     public Pedido(Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
         this.instante = instante;
-        this.pagamento = pagamento;
         this.cliente = cliente;
         this.enderecoDeEntrega = enderecoDeEntrega;
     }

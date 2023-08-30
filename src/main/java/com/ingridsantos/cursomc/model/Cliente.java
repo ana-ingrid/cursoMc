@@ -30,7 +30,7 @@ public class Cliente {
     private Set<String> telefones = new HashSet<>();
     @JsonBackReference
     @OneToMany(mappedBy = "cliente")
-    private List<Pedido> Pedidos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
     }
@@ -103,11 +103,11 @@ public class Cliente {
     }
 
     public List<Pedido> getPedidos() {
-        return Pedidos;
+        return pedidos;
     }
 
     public void setPedidos(List<Pedido> pedidos) {
-        Pedidos = pedidos;
+        this.pedidos = pedidos;
     }
 
     @Override
