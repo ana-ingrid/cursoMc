@@ -1,6 +1,6 @@
 package com.ingridsantos.cursomc.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ public abstract class Pagamento {
     @Id
     private Integer id = null;
     private Integer estado;
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId

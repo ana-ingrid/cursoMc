@@ -1,9 +1,8 @@
 package com.ingridsantos.cursomc.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +17,7 @@ public class Endereco {
     private String cep;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    @JsonBackReference
+    @JsonIgnore
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "cidade_id")
