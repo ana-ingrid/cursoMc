@@ -3,10 +3,7 @@ package com.ingridsantos.cursomc.service;
 import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
 import com.ingridsantos.cursomc.model.Cliente;
 import com.ingridsantos.cursomc.repository.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -17,7 +14,7 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public Cliente buscarCliente(Integer id) {
+    public Cliente consultaClienteId(Integer id) {
         return clienteRepository.findById(id).orElseThrow(() -> new ObjetoNaoEncontradoException("Cliente não encontrado"));
     }
 

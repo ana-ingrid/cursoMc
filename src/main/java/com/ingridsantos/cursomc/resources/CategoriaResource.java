@@ -20,16 +20,20 @@ public class CategoriaResource {
 
     @GetMapping(value = "/{id}")
      ResponseEntity<Categoria> ConsultaCategoriaPorId(@PathVariable Integer id) {
-        return ResponseEntity.status(200).body(categoriaService.ConsultaCategoriaPorId(id));
+        return ResponseEntity.status(200).body(categoriaService.consultaCategoriaPorId(id));
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Categoria> salvaCategoria(@RequestBody Categoria obj){
+    public ResponseEntity<Void> salvaCategoria(@RequestBody Categoria obj){
         obj = categoriaService.salvaCategoria(obj);
          URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
-
+    @RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)
+    public ResponseEntity<Void> alteraCategoria(@RequestBody Categoria obj, @PathVariable Integer id){
+         obj.setId(id);
+         obj = categoriaService.alteraCategoria(obj,id);
+         return ResponseEntity.noContent().build();
+    }
 
 }
