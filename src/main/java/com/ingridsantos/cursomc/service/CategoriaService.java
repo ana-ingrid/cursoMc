@@ -1,8 +1,10 @@
 package com.ingridsantos.cursomc.service;
 
+import com.ingridsantos.cursomc.exceptions.IntegridadeDataException;
 import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
 import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.repository.CategoriaRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,4 +29,14 @@ public class CategoriaService {
         consultaCategoriaPorId(id);
         return categoriaRepository.save(obj);
     }
+
+    public void deletaCategoria(Integer id) {
+        consultaCategoriaPorId(id);
+        try {
+            categoriaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new IntegridadeDataException("Não é possível excluir uma categoria que possui produtos adicionados");
+        }
+    }
+
 }
