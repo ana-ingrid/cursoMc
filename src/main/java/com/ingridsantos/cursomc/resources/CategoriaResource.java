@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -41,6 +42,13 @@ public class CategoriaResource {
         categoriaService.deletaCategoria(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    ResponseEntity<List<Categoria>> ConsultaPaginada() {
+        List<Categoria> lista = categoriaService.consultaPaginada();
+        return ResponseEntity.ok().body(lista);
+    }
+
 
 
 }

@@ -7,6 +7,8 @@ import com.ingridsantos.cursomc.repository.CategoriaRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
 
@@ -39,4 +41,7 @@ public class CategoriaService {
         }
     }
 
+    public List<Categoria> consultaPaginada() {
+        return categoriaRepository.findAll();
+    }
 }
