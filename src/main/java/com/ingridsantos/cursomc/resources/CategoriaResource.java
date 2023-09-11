@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.resources;
 
+import com.ingridsantos.cursomc.dto.CategoriaDTO;
 import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.service.CategoriaService;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -44,9 +47,10 @@ public class CategoriaResource {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<List<Categoria>> ConsultaPaginada() {
+    ResponseEntity<List<CategoriaDTO>> ConsultaPaginada() {
         List<Categoria> lista = categoriaService.consultaPaginada();
-        return ResponseEntity.ok().body(lista);
+        List<CategoriaDTO> listaDTO = lista.stream().map(obj ->  new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listaDTO);
     }
 
 
