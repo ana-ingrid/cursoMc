@@ -1,5 +1,6 @@
 package com.ingridsantos.cursomc.service;
 
+import com.ingridsantos.cursomc.dto.CategoriaDTO;
 import com.ingridsantos.cursomc.exceptions.IntegridadeDataException;
 import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
 import com.ingridsantos.cursomc.model.Categoria;
@@ -53,6 +54,8 @@ public class CategoriaService {
             return categoriaRepository.findAll(pageRequest);
     }
 
-
+    public Categoria conversaoDTO(CategoriaDTO objDto){
+        return new Categoria(objDto.getNome());
+    }
 
 }

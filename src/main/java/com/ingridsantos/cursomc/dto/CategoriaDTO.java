@@ -1,10 +1,17 @@
 package com.ingridsantos.cursomc.dto;
 
 import com.ingridsantos.cursomc.model.Categoria;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 
 public class CategoriaDTO {
 
     private Integer id = null;
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, max = 50, message = "Preencha o campo corretamente")
     private String nome;
 
     public CategoriaDTO(){

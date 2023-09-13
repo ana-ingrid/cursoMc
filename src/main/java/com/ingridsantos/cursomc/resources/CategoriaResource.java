@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,14 +29,16 @@ public class CategoriaResource {
         return ResponseEntity.status(200).body(categoriaService.consultaCategoriaPorId(id));
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> salvaCategoria(@RequestBody Categoria obj){
-        obj = categoriaService.salvaCategoria(obj);
+    public ResponseEntity<Void> salvaCategoria(@Valid @RequestBody CategoriaDTO objDto){
+         Categoria obj = categoriaService.conversaoDTO(objDto);
+         obj = categoriaService.salvaCategoria(obj);
          URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+                .path("/{id}").buildAndExpand(objDto.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     @RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)
-    public ResponseEntity<Void> alteraCategoria(@RequestBody Categoria obj, @PathVariable Integer id){
+    public ResponseEntity<Categoria> alteraCategoria(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id){
+         Categoria obj = categoriaService.conversaoDTO(objDto);
          obj.setId(id);
          obj = categoriaService.alteraCategoria(obj,id);
          return ResponseEntity.noContent().build();
