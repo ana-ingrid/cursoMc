@@ -4,7 +4,6 @@ import com.ingridsantos.cursomc.model.Categoria;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 
 public class CategoriaDTO {
