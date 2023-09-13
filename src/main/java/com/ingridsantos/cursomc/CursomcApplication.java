@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.TimeZone;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
@@ -46,6 +45,10 @@ public class CursomcApplication implements CommandLineRunner {
 //		produto e categoria
         Categoria cat1 = new Categoria("Informática");
         Categoria cat2 = new Categoria("Escritório");
+        Categoria cat3 = new Categoria("Jardinagem");
+        Categoria cat4 = new Categoria("Elétrica");
+        Categoria cat5 = new Categoria("Engenharia");
+        Categoria cat6 = new Categoria("Contadores");
 
         Produto p1 = new Produto("impressora", 2000.00);
         Produto p2 = new Produto("cadeira", 1000.00);
@@ -55,7 +58,7 @@ public class CursomcApplication implements CommandLineRunner {
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
 
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
 //		estados e cidades

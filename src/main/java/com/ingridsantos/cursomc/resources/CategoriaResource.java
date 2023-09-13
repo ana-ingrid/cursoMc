@@ -3,12 +3,12 @@ package com.ingridsantos.cursomc.resources;
 import com.ingridsantos.cursomc.dto.CategoriaDTO;
 import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.service.CategoriaService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,12 +47,21 @@ public class CategoriaResource {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<List<CategoriaDTO>> ConsultaPaginada() {
-        List<Categoria> lista = categoriaService.consultaPaginada();
+    ResponseEntity<List<CategoriaDTO>> ConsultaCategorias() {
+        List<Categoria> lista = categoriaService.consultaCategorias();
         List<CategoriaDTO> listaDTO = lista.stream().map(obj ->  new CategoriaDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaDTO);
     }
 
-
+    @RequestMapping(value ="/paginada", method = RequestMethod.GET)
+    ResponseEntity<Page<CategoriaDTO>> consultaPaginada( @RequestParam(value = "pagina", defaultValue = "0") Integer pagina,
+                                                         @RequestParam(value = "linhasPagina", defaultValue = "24") Integer linhasPagina,
+                                                         @RequestParam(value = "tipo", defaultValue = "DESC") String tipo,
+                                                         @RequestParam(value = "ordem", defaultValue = "nome") String ordem
+                                                         ){
+         Page<Categoria> objs = categoriaService.consultaPaginada(pagina, linhasPagina, tipo, ordem);
+         Page<CategoriaDTO> listaDTO = objs.map(obj -> new CategoriaDTO(obj));
+        return ResponseEntity.ok().body(listaDTO);
+    }
 
 }

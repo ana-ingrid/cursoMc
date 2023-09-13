@@ -5,6 +5,9 @@ import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
 import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.repository.CategoriaRepository;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +44,15 @@ public class CategoriaService {
         }
     }
 
-    public List<Categoria> consultaPaginada() {
+    public List<Categoria> consultaCategorias() {
         return categoriaRepository.findAll();
     }
+
+    public Page<Categoria> consultaPaginada(Integer pagina, Integer linhasPagina, String tipo, String ordem){
+            PageRequest pageRequest = PageRequest.of(pagina, linhasPagina, Sort.Direction.valueOf(tipo), ordem);
+            return categoriaRepository.findAll(pageRequest);
+    }
+
+
+
 }
