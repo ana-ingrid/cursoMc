@@ -1,6 +1,7 @@
 package com.ingridsantos.cursomc.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ingridsantos.cursomc.dto.ClienteDTO;
 import com.ingridsantos.cursomc.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -37,7 +38,10 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipoCliente = tipoCliente.getCodigo();
+        this.tipoCliente = (tipoCliente==null) ? null : tipoCliente.getCodigo();
+    }
+
+    public Cliente(ClienteDTO objDto) {
     }
 
     public Integer getId() {
