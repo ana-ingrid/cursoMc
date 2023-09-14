@@ -22,7 +22,7 @@ public class CategoriaService {
         this.categoriaRepository = repository;
     }
 
-    public Categoria consultaCategoriaPorId(Integer id) {
+    public Categoria consultaCategoriaId(Integer id) {
         return categoriaRepository.findById(id).orElseThrow(() -> new ObjetoNaoEncontradoException("Objeto não encontrado"));
     }
 
@@ -32,12 +32,18 @@ public class CategoriaService {
     }
 
     public Categoria alteraCategoria(Categoria obj, Integer id) {
-        consultaCategoriaPorId(id);
-        return categoriaRepository.save(obj);
+        Categoria categoria = consultaCategoriaId(id);
+        atualizaDados(obj, categoria);
+        return categoriaRepository.save(categoria);
     }
 
+    private void atualizaDados(Categoria newObj, Categoria obj) {
+        obj.setNome(newObj.getNome());
+    }
+
+
     public void deletaCategoria(Integer id) {
-        consultaCategoriaPorId(id);
+        consultaCategoriaId(id);
         try {
             categoriaRepository.deleteById(id);
         } catch (DataIntegrityViolationException e){

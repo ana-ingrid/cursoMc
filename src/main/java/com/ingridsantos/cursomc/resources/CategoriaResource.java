@@ -11,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,7 +25,7 @@ public class CategoriaResource {
 
     @GetMapping(value = "/{id}")
      ResponseEntity<Categoria> ConsultaCategoriaPorId(@PathVariable Integer id) {
-        return ResponseEntity.status(200).body(categoriaService.consultaCategoriaPorId(id));
+        return ResponseEntity.status(200).body(categoriaService.consultaCategoriaId(id));
     }
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> salvaCategoria(@Valid @RequestBody CategoriaDTO objDto){
