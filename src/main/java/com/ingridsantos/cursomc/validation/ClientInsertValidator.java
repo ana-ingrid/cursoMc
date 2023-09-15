@@ -11,11 +11,19 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD:src/main/java/com/ingridsantos/cursomc/validation/ClientInsertValidator.java
 public class ClientInsertValidator implements ConstraintValidator<ClientInsert,SalvaClienteDTO> {
 
     private ClienteRepository clienteRepository;
 
     public ClientInsertValidator(ClienteRepository clienteRepository) {
+=======
+public class ClienteInsertValidator implements ConstraintValidator<ClientInsert,SalvaClienteDTO> {
+
+    private ClienteRepository clienteRepository;
+
+    public ClienteInsertValidator(ClienteRepository clienteRepository) {
+>>>>>>> 3ba22f4f7f940a7565e5ef3867f29e169f1ddc05:src/main/java/com/ingridsantos/cursomc/validation/ClienteInsertValidator.java
         this.clienteRepository = clienteRepository;
     }
 
