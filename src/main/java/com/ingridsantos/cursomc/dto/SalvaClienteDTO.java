@@ -1,6 +1,6 @@
 package com.ingridsantos.cursomc.dto;
 
-import com.ingridsantos.cursomc.enums.TipoCliente;
+import com.ingridsantos.cursomc.validation.ClientInsert;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -8,9 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-import static com.ingridsantos.cursomc.enums.TipoCliente.toEnum;
-
-//@ClientInsert
+@ClientInsert
 public class SalvaClienteDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 50, message = "Preencha o campo corretamente")
@@ -67,7 +65,7 @@ public class SalvaClienteDTO implements Serializable {
         return tipoCliente;
     }
 
-    public void setTipoCliente(Integer tipo) {
+    public void setTipoCliente(Integer tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
