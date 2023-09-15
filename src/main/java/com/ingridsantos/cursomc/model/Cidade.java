@@ -17,7 +17,7 @@ public class Cidade {
     public Cidade() {
     }
 
-    public Cidade( String nome, Estado estado) {
+    public Cidade( Integer id, String nome, Estado estado) {
         this.nome = nome;
         this.estado = estado;
     }

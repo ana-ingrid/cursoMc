@@ -22,7 +22,7 @@ public class Cliente {
 
     private Integer tipoCliente;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
@@ -38,7 +38,7 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipoCliente = (tipoCliente==null) ? null : tipoCliente.getCodigo();
+        this.tipoCliente = (tipoCliente==null) ? null : tipoCliente.getCod();
     }
 
     public Cliente(ClienteDTO objDto) {
@@ -77,11 +77,11 @@ public class Cliente {
     }
 
     public TipoCliente getTipoCliente() {
-        return toEnum(tipoCliente);
+        return TipoCliente.toEnum(tipoCliente);
     }
 
     public void setTipoCliente(TipoCliente tipoCliente) {
-        this.tipoCliente = tipoCliente.getCodigo();
+        this.tipoCliente = tipoCliente.getCod();
     }
 
     public List<Endereco> getEnderecos() {

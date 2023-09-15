@@ -1,14 +1,19 @@
 package com.ingridsantos.cursomc.resources;
 
 import com.ingridsantos.cursomc.dto.ClienteDTO;
+import com.ingridsantos.cursomc.dto.ClienteDTO;
+import com.ingridsantos.cursomc.dto.SalvaClienteDTO;
+import com.ingridsantos.cursomc.model.Cliente;
 import com.ingridsantos.cursomc.model.Cliente;
 import com.ingridsantos.cursomc.model.Cliente;
 import com.ingridsantos.cursomc.service.ClienteService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +31,14 @@ public class ClienteResource {
     public ResponseEntity<Cliente> consultaClienteId(@PathVariable Integer id){
         return ResponseEntity.status(200).body(clienteService.consultaClienteId(id));
     }
-
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> salvaCliente(@Valid @RequestBody SalvaClienteDTO objDto){
+        Cliente obj = clienteService.conversaoDTO(objDto);
+        obj = clienteService.salvaCliente(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
     @RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)
     public ResponseEntity<Cliente> alteraCliente(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
         Cliente obj = clienteService.conversaoDTO(objDto);

@@ -8,7 +8,6 @@ import javax.validation.constraints.NotEmpty;
 
 public class CategoriaDTO {
 
-    private Integer id = null;
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 50, message = "Preencha o campo corretamente")
     private String nome;
@@ -18,16 +17,7 @@ public class CategoriaDTO {
     }
 
     public CategoriaDTO(Categoria obj){
-        this.id = obj.getId();
         this.nome = obj.getNome();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {

@@ -1,49 +1,39 @@
 package com.ingridsantos.cursomc.enums;
 
-import com.ingridsantos.cursomc.exceptions.ObjetoNaoEncontradoException;
-
 public enum TipoCliente {
 
     PESSOAFISICA(1, "Pessoa Física"),
-    PESSOAJURIDICA(2, "Pessoa Jurídica"),
-    ;
+    PESSOAJURIDICA(2, "Pessoa Jurídica");
 
-    private int codigo;
+    private int cod;
     private String descricao;
 
-    TipoCliente(int codigo, String descricao) {
-        this.codigo = codigo;
+    private TipoCliente(int cod, String descricao) {
+        this.cod = cod;
         this.descricao = descricao;
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getCod() {
+        return cod;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    public static TipoCliente toEnum(Integer cod) {
 
-    public static TipoCliente toEnum(Integer codigo){
-        if (codigo == null){
+        if (cod == null) {
             return null;
         }
 
-        for (TipoCliente x : TipoCliente.values()){
-            if (codigo.equals(x.getCodigo())){
+        for (TipoCliente x : TipoCliente.values()) {
+            if (cod.equals(x.getCod())) {
                 return x;
             }
         }
 
-        throw new IllegalArgumentException("Id Inválido");
+        throw new IllegalArgumentException("Id inválido: " + cod);
     }
 
 }
