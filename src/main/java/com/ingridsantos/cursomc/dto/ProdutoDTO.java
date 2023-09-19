@@ -1,10 +1,6 @@
 package com.ingridsantos.cursomc.dto;
 
-import com.ingridsantos.cursomc.model.Categoria;
 import com.ingridsantos.cursomc.model.Produto;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProdutoDTO {
 
@@ -13,6 +9,12 @@ public class ProdutoDTO {
     private Double preco;
 
     public ProdutoDTO() {
+
+    }
+    public ProdutoDTO(Produto obj) {
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.preco = obj.getPreco();
     }
 
     public Integer getId() {

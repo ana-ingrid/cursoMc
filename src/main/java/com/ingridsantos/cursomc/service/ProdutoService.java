@@ -30,7 +30,7 @@ public class ProdutoService {
     public Page<Produto> consultaPaginada(String nome, List<Integer> ids, Integer pagina, Integer linhasPagina, String tipo, String ordem){
         PageRequest pageRequest = PageRequest.of(pagina, linhasPagina, Sort.Direction.valueOf(tipo), ordem);
         List<Categoria> categorias = categoriaRepository.findAllById(ids);
-        return produtoRepository.search(nome, categorias, pageRequest);
+        return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
     }
 
 }
