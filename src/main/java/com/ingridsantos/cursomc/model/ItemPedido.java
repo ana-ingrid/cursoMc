@@ -66,6 +66,10 @@ public class ItemPedido {
         this.preco = preco;
     }
 
+    public Double getSubTotal(){
+        return (preco - desconto) * quantidade;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
