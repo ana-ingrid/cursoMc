@@ -53,13 +53,26 @@ public class CursomcApplication implements CommandLineRunner {
         Produto p1 = new Produto("impressora", 2000.00);
         Produto p2 = new Produto("cadeira", 1000.00);
         Produto p3 = new Produto("computador", 2000.00);
+        Produto p4 = new Produto("mesa", 900.00);
+        Produto p5 = new Produto("caixa de som", 500.00);
+        Produto p6 = new Produto("webcam", 200.00);
+        Produto p7 = new Produto("scanner", 600.00);
+        Produto p8 = new Produto("monitor", 800.00);
+        Produto p9 = new Produto("organizadores", 230.00);
 
         p1.getCategorias().addAll(Arrays.asList(cat1));
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
+        p4.getCategorias().addAll(Arrays.asList(cat1, cat2));
+        p5.getCategorias().addAll(Arrays.asList(cat1, cat2));
+        p5.getCategorias().addAll(Arrays.asList(cat1, cat2));
+        p6.getCategorias().addAll(Arrays.asList(cat2));
+        p7.getCategorias().addAll(Arrays.asList(cat2));
+        p8.getCategorias().addAll(Arrays.asList(cat1));
+        p9.getCategorias().addAll(Arrays.asList(cat1, cat2));
 
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9));
 
 //		estados e cidades
         Estado e1 = new Estado("Minas Gerais");
