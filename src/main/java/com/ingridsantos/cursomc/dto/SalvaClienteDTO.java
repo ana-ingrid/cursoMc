@@ -10,6 +10,8 @@ import java.io.Serializable;
 
 @ClientInsert
 public class SalvaClienteDTO implements Serializable {
+
+    private Integer id;
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 50, message = "Preencha o campo corretamente")
     private String nome;
@@ -37,6 +39,15 @@ public class SalvaClienteDTO implements Serializable {
 
     public SalvaClienteDTO() {
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

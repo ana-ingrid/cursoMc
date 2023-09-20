@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id = null;
+    private Integer id;
     private String logradouro;
     private Integer numero;
     private String complemento;
@@ -27,7 +27,7 @@ public class Endereco {
 
     }
 
-    public Endereco(String logradouro, Integer numero, String complemento, String bairro,
+    public Endereco(Integer id, String logradouro, Integer numero, String complemento, String bairro,
                     String cep, Cliente cliente, Cidade cidade) {
         this.logradouro = logradouro;
         this.numero = numero;

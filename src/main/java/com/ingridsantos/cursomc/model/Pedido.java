@@ -12,7 +12,7 @@ import java.util.Set;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id = null;
+    private Integer id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
@@ -32,7 +32,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+    public Pedido(Integer id,Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+        this.id = id;
         this.instante = instante;
         this.cliente = cliente;
         this.enderecoDeEntrega = enderecoDeEntrega;

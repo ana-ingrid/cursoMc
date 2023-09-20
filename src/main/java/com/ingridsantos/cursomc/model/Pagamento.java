@@ -1,17 +1,20 @@
 package com.ingridsantos.cursomc.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pagamento {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
+public abstract class Pagamento implements Serializable {
 
     @Id
-    private Integer id = null;
+    private Integer id;
     private Integer estado;
     @JsonIgnore
     @OneToOne
@@ -22,7 +25,8 @@ public abstract class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(EstadoPagamento estado, Pedido pedido) {
+    public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
+        this.id = id;
         this.estado = (estado==null) ? null : estado.getCodigo();
         this.pedido = pedido;
     }

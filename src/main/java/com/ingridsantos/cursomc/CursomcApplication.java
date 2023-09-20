@@ -43,22 +43,22 @@ public class CursomcApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 //		produto e categoria
-        Categoria cat1 = new Categoria("Informática");
-        Categoria cat2 = new Categoria("Escritório");
-        Categoria cat3 = new Categoria("Jardinagem");
-        Categoria cat4 = new Categoria("Elétrica");
-        Categoria cat5 = new Categoria("Engenharia");
-        Categoria cat6 = new Categoria("Contadores");
+        Categoria cat1 = new Categoria(null,"Informática");
+        Categoria cat2 = new Categoria(null,"Escritório");
+        Categoria cat3 = new Categoria(null,"Jardinagem");
+        Categoria cat4 = new Categoria(null,"Elétrica");
+        Categoria cat5 = new Categoria(null,"Engenharia");
+        Categoria cat6 = new Categoria(null,"Contadores");
 
-        Produto p1 = new Produto("impressora", 2000.00);
-        Produto p2 = new Produto("cadeira", 1000.00);
-        Produto p3 = new Produto("computador", 2000.00);
-        Produto p4 = new Produto("mesa", 900.00);
-        Produto p5 = new Produto("caixa de som", 500.00);
-        Produto p6 = new Produto("webcam", 200.00);
-        Produto p7 = new Produto("scanner", 600.00);
-        Produto p8 = new Produto("monitor", 800.00);
-        Produto p9 = new Produto("organizadores", 230.00);
+        Produto p1 = new Produto(null,"impressora", 2000.00);
+        Produto p2 = new Produto(null,"cadeira", 1000.00);
+        Produto p3 = new Produto(null,"computador", 2000.00);
+        Produto p4 = new Produto(null,"mesa", 900.00);
+        Produto p5 = new Produto(null,"caixa de som", 500.00);
+        Produto p6 = new Produto(null,"webcam", 200.00);
+        Produto p7 = new Produto(null,"scanner", 600.00);
+        Produto p8 = new Produto(null,"monitor", 800.00);
+        Produto p9 = new Produto(null,"organizadores", 230.00);
 
         p1.getCategorias().addAll(Arrays.asList(cat1));
         p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
@@ -75,8 +75,8 @@ public class CursomcApplication implements CommandLineRunner {
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9));
 
 //		estados e cidades
-        Estado e1 = new Estado("Minas Gerais");
-        Estado e2 = new Estado("São Paulo");
+        Estado e1 = new Estado(null,"Minas Gerais");
+        Estado e2 = new Estado(null,"São Paulo");
 
         Cidade c1 = new Cidade(null,"Uberlândia",e1);
         Cidade c2 = new Cidade(null,"Juiz de Fora", e1);
@@ -90,12 +90,12 @@ public class CursomcApplication implements CommandLineRunner {
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 //      Cliente e endereço
 
-        Cliente cl1 = new Cliente("Maria Silva", "maria@gmail.com", "22123343245", TipoCliente.PESSOAFISICA);
+        Cliente cl1 = new Cliente(null,"Maria Silva", "maria@gmail.com", "22123343245", TipoCliente.PESSOAFISICA);
 
         cl1.getTelefones().addAll(Arrays.asList("27688493", "974516398"));
 
-        Endereco en1 = new Endereco("Rua flores", 300, "Apto 302", "Jardim", "20342675", cl1, c1);
-        Endereco en2 = new Endereco("Rua Norte", 12, "Casa 1", "Santana", "20345645", cl1, c2);
+        Endereco en1 = new Endereco(null,"Rua flores", 300, "Apto 302", "Jardim", "20342675", cl1, c1);
+        Endereco en2 = new Endereco(null,"Rua Norte", 12, "Casa 1", "Santana", "20345645", cl1, c2);
 
         cl1.getEnderecos().addAll(Arrays.asList(en1, en2));
 
@@ -106,13 +106,13 @@ public class CursomcApplication implements CommandLineRunner {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Pedido ped1 = new Pedido(sdf.parse("30/07/2023 10:32"), cl1, en1);
-        Pedido ped2 = new Pedido(sdf.parse("10/08/2023 14:10"), cl1, en1);
+        Pedido ped1 = new Pedido(null,sdf.parse("30/07/2023 10:32"), cl1, en1);
+        Pedido ped2 = new Pedido(null,sdf.parse("10/08/2023 14:10"), cl1, en1);
 
-        Pagamento pag1 = new PagamentoCartao(EstadoPagamento.QUITADO, ped1, 6);
+        Pagamento pag1 = new PagamentoCartao(null,EstadoPagamento.QUITADO, ped1, 6);
         ped1.setPagamento(pag1);
 
-        Pagamento pag2 = new PagamentoBoleto(EstadoPagamento.PENDENTE, ped2, sdf.parse("24/08/2023 23:59"), null);
+        Pagamento pag2 = new PagamentoBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("24/08/2023 23:59"), null);
         ped2.setPagamento(pag2);
 
         cl1.getPedidos().addAll(Arrays.asList(ped1,ped2));

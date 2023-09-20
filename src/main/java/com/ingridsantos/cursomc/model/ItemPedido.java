@@ -18,11 +18,15 @@ public class ItemPedido {
     }
 
     public ItemPedido(Pedido pedido,Produto produto, Double desconto, Integer quantidade, Double preco) {
-        this.id.setPedido(pedido);
-        this.id.setProduto(produto);
+        id.setPedido(pedido);
+        id.setProduto(produto);
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
+    }
+
+    public Double getSubTotal(){
+        return (preco - desconto) * quantidade;
     }
 
     @JsonIgnore
@@ -30,10 +34,16 @@ public class ItemPedido {
         return id.getPedido();
     }
 
+    public void setPedido(Pedido pedido){
+        id.setPedido(pedido);
+    }
     public Produto getProduto(){
         return id.getProduto();
     }
 
+    public void setProduto(Produto produto) {
+        id.setProduto(produto);
+    }
     public ItemPedidoPk getId() {
         return id;
     }
@@ -64,10 +74,6 @@ public class ItemPedido {
 
     public void setPreco(Double preco) {
         this.preco = preco;
-    }
-
-    public Double getSubTotal(){
-        return (preco - desconto) * quantidade;
     }
 
     @Override

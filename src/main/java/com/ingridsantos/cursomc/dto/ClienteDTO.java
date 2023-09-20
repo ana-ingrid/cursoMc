@@ -10,7 +10,7 @@ import java.io.Serializable;
 @ClientUpdate
 public class ClienteDTO implements Serializable {
 
-    private Integer id = null;
+    private Integer id;
     @NotEmpty(message = "Campo obrigatório")
     @Length(min = 2, max = 30, message = "min 2 e max de 30 caracteres")
     private String nome;
@@ -18,14 +18,22 @@ public class ClienteDTO implements Serializable {
     @Email
     private String email;
 
+    public ClienteDTO(){
+
+    }
 
     public ClienteDTO(Cliente obj) {
+        this.id = obj.getId();
         this.nome = obj.getNome();
         this.email = obj.getEmail();
     }
 
-    public ClienteDTO(){
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

@@ -4,7 +4,7 @@ import com.ingridsantos.cursomc.model.Produto;
 
 public class ProdutoDTO {
 
-    private Integer id = null;
+    private Integer id;
     private String nome;
     private Double preco;
 

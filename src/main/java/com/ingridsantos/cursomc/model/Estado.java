@@ -12,7 +12,7 @@ public class Estado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id = null;
+    private Integer id;
     private String nome;
     @OneToMany(mappedBy = "estado")
     @JsonIgnore
@@ -22,7 +22,7 @@ public class Estado {
 
     }
 
-    public Estado( String nome) {
+    public Estado(Integer id,String nome) {
         this.nome = nome;
     }
 

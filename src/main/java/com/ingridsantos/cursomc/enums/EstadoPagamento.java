@@ -6,15 +6,15 @@ public enum EstadoPagamento {
     QUITADO(2, "Quitado"),
     CANCELADO(3, "Cancelado");
 
-    private Integer codigo;
+    private int codigo;
     private String descricao;
 
-    EstadoPagamento(Integer codigo, String descricao) {
+    EstadoPagamento(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
 
-    public Integer getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
