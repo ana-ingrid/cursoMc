@@ -11,7 +11,6 @@ import com.ingridsantos.cursomc.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.Date;
 
 @Service
@@ -22,17 +21,24 @@ public class PedidoService {
     private PagamentoRepository pagamentoRepository;
     private ProdutoService produtoService;
     private ItemPedidoRepository itemPedidoRepository;
+    private ClienteService clienteService;
+
+    private EmailService emailService;
 
     public PedidoService(PedidoRepository pedidoRepository,
                          BoletoService boletoService,
                          PagamentoRepository pagamentoRepository,
                          ItemPedidoRepository itemPedidoRepository,
-                         ProdutoService produtoService) {
+                         ProdutoService produtoService,
+                         ClienteService clienteService,
+                         EmailService emailService) {
         this.pedidoRepository = pedidoRepository;
         this.boletoService = boletoService;
         this.pagamentoRepository = pagamentoRepository;
         this.itemPedidoRepository = itemPedidoRepository;
         this.produtoService = produtoService;
+        this.clienteService = clienteService;
+        this.emailService = emailService;
     }
 
     public Pedido consultaPedidoId(Integer id) {
@@ -44,20 +50,24 @@ public class PedidoService {
     public  Pedido salvaPedido(Pedido obj){
         obj.setId(null);
         obj.setInstante(new Date());
+        obj.setCliente(clienteService.consultaClienteId(obj.getCliente().getId()));
         obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
         obj.getPagamento().setPedido(obj);
-        if (obj.getPagamento() instanceof PagamentoBoleto){
+        if (obj.getPagamento() instanceof PagamentoBoleto) {
             PagamentoBoleto pagto = (PagamentoBoleto) obj.getPagamento();
             boletoService.preencherPagamentoBoleto(pagto, obj.getInstante());
         }
         obj = pedidoRepository.save(obj);
         pagamentoRepository.save(obj.getPagamento());
-        for (ItemPedido ip : obj.getItens()){
-            ip.setDesconto(0.00);
+        for (ItemPedido ip : obj.getItens()) {
+            ip.setDesconto(0.0);
             ip.setPreco(produtoService.consultaProdutoId(ip.getProduto().getId()).getPreco());
+            ip.setProduto(produtoService.consultaProdutoId(ip.getProduto().getId()));
+            ip.setPreco(ip.getProduto().getPreco());
             ip.setPedido(obj);
         }
         itemPedidoRepository.saveAll(obj.getItens());
+        emailService.sendOrderConfirmationEmail(obj);
         return obj;
     }
 }
