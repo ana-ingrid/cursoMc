@@ -1,8 +1,6 @@
 package com.ingridsantos.cursomc.config;
 
 import com.ingridsantos.cursomc.service.DBService;
-import com.ingridsantos.cursomc.service.EmailService;
-import com.ingridsantos.cursomc.service.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,11 +19,6 @@ public class TestConfig {
     public boolean instantiateDatabase() throws ParseException {
         dbService.instantiateTestDatabase();
         return true;
-    }
-
-    @Bean
-    public EmailService emailService(){
-        return new MockEmailService();
     }
 
 }
