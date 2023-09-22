@@ -21,17 +21,20 @@ public class PedidoService {
     private PagamentoRepository pagamentoRepository;
     private ProdutoService produtoService;
     private ItemPedidoRepository itemPedidoRepository;
+    private EmailService emailService;
 
     public PedidoService(PedidoRepository pedidoRepository,
                          BoletoService boletoService,
                          PagamentoRepository pagamentoRepository,
                          ItemPedidoRepository itemPedidoRepository,
-                         ProdutoService produtoService) {
+                         ProdutoService produtoService,
+                         EmailService emailService) {
         this.pedidoRepository = pedidoRepository;
         this.boletoService = boletoService;
         this.pagamentoRepository = pagamentoRepository;
         this.itemPedidoRepository = itemPedidoRepository;
         this.produtoService = produtoService;
+        this.emailService = emailService;
     }
 
     public Pedido consultaPedidoId(Integer id) {
@@ -57,6 +60,7 @@ public class PedidoService {
             ip.setPedido(obj);
         }
         itemPedidoRepository.saveAll(obj.getItens());
+        emailService.sendOrderConfirmationEmail(obj);
         return obj;
     }
 }
