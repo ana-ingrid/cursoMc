@@ -1,6 +1,7 @@
 package com.ingridsantos.cursomc.service;
 
 import com.ingridsantos.cursomc.enums.EstadoPagamento;
+import com.ingridsantos.cursomc.enums.Perfil;
 import com.ingridsantos.cursomc.enums.TipoCliente;
 import com.ingridsantos.cursomc.model.*;
 import com.ingridsantos.cursomc.repository.*;
@@ -88,15 +89,22 @@ public class DBService {
 //      Cliente e endereço
 
         Cliente cl1 = new Cliente(null,"Maria Silva", "ingridsantoscosta2003@gmail.com", "22123343245", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
-
         cl1.getTelefones().addAll(Arrays.asList("27688493", "974516398"));
+
+        Cliente cl2 = new Cliente(null,"Ana Costa", "ana.costa@gmail.com", "19093419080", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
+        cl2.addPerfil(Perfil.ADMIN);
+        cl2.getTelefones().addAll(Arrays.asList("27688493", "974516398"));
+
 
         Endereco en1 = new Endereco(null,"Rua flores", 300, "Apto 302", "Jardim", "20342675", cl1, c1);
         Endereco en2 = new Endereco(null,"Rua Norte", 12, "Casa 1", "Santana", "20345645", cl1, c2);
+        Endereco en3 = new Endereco(null,"Rua Rosa", 222, "Casa 6", "Luz", "20567318", cl2, c2);
+
 
         cl1.getEnderecos().addAll(Arrays.asList(en1, en2));
+        cl2.getEnderecos().addAll(Arrays.asList(en3));
 
-        clienteRepository.saveAll(Arrays.asList(cl1));
+        clienteRepository.saveAll(Arrays.asList(cl1, cl2));
         enderecoRepository.saveAll(Arrays.asList(en1, en2));
 
 //        Pedido e pagamento
